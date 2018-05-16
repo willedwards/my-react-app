@@ -39,7 +39,7 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState({ persons: persons})
+    this.setState({ persons })
   }
 
   togglePersonsHandler = () => {
@@ -48,9 +48,11 @@ class App extends Component {
   }
 
   deletePersonHandler = (personIndex) => {
-    const persons = [...this.state.persons];
-    persons.splice(personIndex,1);
-    this.setState({persons: persons});
+    
+    this.setState({
+      persons: this.state.persons.filter((p,index) => index !== personIndex) 
+    
+    });
   }
 
 
@@ -67,7 +69,7 @@ class App extends Component {
             return <Person key={p.id}
                     name={p.name} 
                     age={p.age} 
-                     click={() => this.deletePersonHandler(index)}
+                     onClick={() => this.deletePersonHandler(index)}
                      changed={(event) => this.nameChangedHandler(event,p.id)} 
                     />
           })}

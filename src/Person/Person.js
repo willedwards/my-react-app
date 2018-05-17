@@ -1,14 +1,21 @@
 import React from 'react'
 import './Person.css';//injected dynamically with webpack
+import Radium from 'radium';
 
 const person = (props) => {
+    const style = {
+        '@media (min-width: 500px)':{
+            width: '450px'
+        }
+    };
+
     return (
-        <div className='Person' onClick={props.onClick} >
-            <p> I'm {props.name} and am {props.age} old </p>
+        <div className='Person' style={style}>
+            <p onClick={props.onClick}> I'm {props.name} and am {props.age} old </p>
         <p>{props.children}</p>
        <input type="text" onChange={props.changed} value={props.name}/>
         </div>
     )
-}
+};
 
-export default person;
+export default Radium(person);

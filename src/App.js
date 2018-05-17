@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
-import Radium, { StyleRoot } from 'radium';
 
 
 class App extends Component {
@@ -66,11 +65,8 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer',
-      ':hover':{
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
+      cursor: 'pointer'
+     
     };
    
 
@@ -91,25 +87,22 @@ class App extends Component {
       );
 
       style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color:'black'
-      }
+    
     }
 
-    const classes =[]; //red bold 
+    const assignedClasses =[]; //red bold 
     if(this.state.persons.length <=2){
-        classes.push('red');
+      assignedClasses.push(classes.red);
     }
     if(this.state.persons.length <=1){
-      classes.push('bold'); //classes = ['red','bold']
+      assignedClasses.push(classes.bold); //classes = ['red','bold']
     }
 
-    var combo = classes.join(' ');
+    var combo = assignedClasses.join(' ');
 
     return (
-      <StyleRoot>
-      <div className="App">
+
+      <div className={classes.App}>
       <h1> Hi, I'm a react app</h1>
       <p className={combo}> This is really working!</p>
         <button style={style}
@@ -118,9 +111,9 @@ class App extends Component {
             {persons} 
       
       </div>
-      </StyleRoot>
+
     );
   }
 }
 
-export default Radium(App);
+export default App;
